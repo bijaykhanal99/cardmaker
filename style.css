@@ -1,0 +1,456 @@
+/* ========================= */
+/* 🌐 GLOBAL */
+/* ========================= */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family: Arial, sans-serif;
+}
+
+body{
+  background: url('merobgb.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.main{
+  margin:2px;
+  border:2px solid cornflowerblue;
+  border-radius:10px;
+  overflow:hidden;
+}
+
+/* ========================= */
+/* 🔝 TOP */
+/* ========================= */
+.top{
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.3);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+  padding:10px;
+}
+
+.upper{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+}
+
+.upper h2{color:cornflowerblue}
+.upper h1{
+  background:linear-gradient(-135deg,#fff,cornflowerblue);
+  padding:5px 12px;
+  border-radius:10px;
+  color:darkred;
+}
+
+.control{
+  display:flex;
+  align-items:center;
+}
+
+.control button{
+  background:none;
+  border:none;
+  cursor:pointer;
+  font-weight:bold;
+  margin:0 10px;
+  display:flex;
+  gap:6px;
+  color:#fff;
+}
+
+.upper ul{
+  display:flex;
+  flex-wrap:wrap;
+}
+
+.upper ul li{
+  list-style:none;
+  margin:0 14px;
+  font-weight:bold;
+  cursor:pointer;
+  display:flex;
+  gap:6px;
+  color:#fff;
+}
+
+/* ========================= */
+/* 🎓 STUDENT / STAFF */
+/* ========================= */
+.control input{display:none}
+
+.control label{
+  cursor:pointer;
+  background:#fff;
+  padding:5px 10px;
+  border-radius:6px;
+  margin-left:10px;
+  font-weight:bold;
+}
+
+/* ========================= */
+/* 🧱 MID */
+/* ========================= */
+.mid{
+  display:flex;
+  min-height:520px;
+}
+
+/* ========================= */
+/* 📚 SIDEBAR */
+/* ========================= */
+.sidebar,
+.sidebarX{
+  width:320px;
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.3);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+  padding:12px;
+  height:90vh;
+  overflow-y:auto;
+  scrollbar-width:none;
+}
+
+.sidebarX{display:none}
+
+.sidebar::-webkit-scrollbar,
+.sidebarX::-webkit-scrollbar{
+  display:none;
+}
+
+.sidebar h3,
+.sidebarX h3{
+  color:darkred;
+  display:flex;
+  gap:6px;
+}
+
+.sidebar ul li{
+  list-style:none;
+  margin:10px 0;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  font-weight:bold;
+  color:skyblue;
+}
+
+.sidebar label,
+.sidebarX label{color:cornflowerblue}
+
+.sidebar p,
+.sidebarX p{
+  font-weight:bold;
+  color:red;
+}
+
+.sidebar button{
+  width:70px;
+  border:2px solid skyblue;
+  background:transparent;
+  color:skyblue;
+  cursor:pointer;
+  padding:4px;
+  border-radius:5px;
+}
+
+.sidebar button:hover{
+  background:skyblue;
+  color:#fff;
+}
+
+/* ========================= */
+/* 🔘 TOGGLE */
+/* ========================= */
+.switch{
+  position:relative;
+  width:44px;
+  height:22px;
+  cursor: pointer;
+}
+
+.switch input{display:none}
+
+.slider{
+  position:absolute;
+  inset:0;
+  background:#ccc;
+  border-radius:20px;
+  transition:.3s;
+}
+
+.slider::before{
+  content:"";
+  position:absolute;
+  width:18px;
+  height:18px;
+  left:2px;
+  top:2px;
+  background:#fff;
+  border-radius:50%;
+  transition:.3s;
+}
+
+.switch input:checked + .slider{
+  background:cornflowerblue;
+}
+
+.switch input:checked + .slider::before{
+  transform:translateX(22px);
+}
+
+/* ========================= */
+/* 🎛 EDIT */
+/* ========================= */
+.edit label{
+  font-size:13px;
+  margin-top:6px;
+  display:block;
+}
+
+.edit input{
+  width:100%;
+  cursor:pointer;
+}
+
+/* ========================= */
+/* 🖥 WORKING AREA */
+/* ========================= */
+.workingarea{
+  flex:1;
+  padding:20px;
+  position:relative;
+}
+
+/* ========================= */
+/* 🪪 CARD */
+.card {
+  position: absolute;
+  left:45%;
+  top: 55%;
+  transform: translate(-50%, -50%);
+  width: 360px;
+  height: 360px;
+  background: #fff;
+  border: 2px solid #fff;
+  border-radius: 12px;
+  padding: 15px;
+  transition: 0.3s;
+  overflow: hidden;
+  touch-action: none;
+}
+
+/* Images inside card */
+.card img {
+  max-width: 100%;
+  display: block;
+  margin-bottom: 10px;
+}
+
+/* Text inside card */
+.card h3, .card p {
+  position: absolute;
+  padding: 2px 5px;
+}
+.card #school{top:5%; left:5%;}
+.card #name{top: 25%; left:5%;}
+.card #classw{top: 40%; left:5%;}
+.card #wish{top: 60%; left:5%;}
+.card #type{top: 15%; left:5%;}
+
+/* Responsive adjustments */
+@media screen and (max-width: 500px) {
+  .card {
+    width: 90%;
+    height: auto;
+    padding: 10px;
+  }
+  .card img {max-height: 80px;}
+}
+
+/* ========================= */
+/* 📝 FORM / BACKGROUND */
+.workingarea .form,
+.workingarea .backgrounds{
+  position:absolute;
+  right: -18%;
+  top: 45%;
+  transform:translate(-50%,-50%);
+  width:360px;
+  height:440px;
+  padding:15px;
+  overflow-y:auto;
+  scrollbar-width:none;
+  border-radius: 5px;
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.3);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+}
+
+.backgrounds{display:none}
+
+.form::-webkit-scrollbar,
+.backgrounds::-webkit-scrollbar{
+  display:none;
+}
+
+.form h2,
+.backgrounds h2{color:gold}
+
+.form h3,
+.backgrounds h3{
+  color:cornflowerblue;
+  margin:3px;
+  font-size:15px;
+}
+
+.form .grid,
+.backgrounds .grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  grid-gap:5px 30px;
+}
+.backgrounds .grid li{
+  width: 140px;
+  border: 2px solid red;
+  list-style: none;
+}
+.backgrounds .grid li img{
+  width: 100%;
+}
+.form input,
+.form select,
+.form label,
+.backgrounds input,
+.backgrounds label,
+.form textarea{
+  padding:5px;
+  width:100%;
+  border:2px solid skyblue;
+  background:transparent;
+  outline:none;
+  margin:4px;
+  border-radius:5px;
+  color:skyblue;
+}
+.form span, .backgrounds span{
+  position: absolute;
+  top: 2%;
+  right: 5%;
+  color: red;
+  cursor: pointer;
+  font-size: 30px;
+}
+
+.form textarea{resize:none}
+
+.form input[type="file"],
+.backgrounds input[type="file"],
+.backgrounds input[type="color"]{
+  display:none;
+}
+
+.form label:hover,
+.backgrounds label:hover{
+  background:skyblue;
+  color:#fff;
+  cursor:pointer;
+}
+
+/* ========================= */
+/* 🖱 DRAG READY */
+.card,
+.card *{
+  touch-action:none;
+  user-select:none;
+  cursor:grab;
+}
+
+.dragging{
+  cursor:grabbing;
+  opacity:0.85;
+}
+
+/* ========================= */
+/* 📱 MOBILE */
+@media (max-width:768px){
+  .mid{flex-direction:column}
+  .sidebar,
+  .sidebarX{
+    width:100%;
+    height:auto;
+    max-height:45vh;
+  }
+  .workingarea{padding:10px}
+  .card{
+    position:relative;
+    left:50%;
+    top:auto;
+    transform:translateX(-50%);
+    width:92%;
+    height:auto;
+    min-height:300px;
+  }
+  .workingarea .form,
+  .workingarea .backgrounds{
+    position:relative;
+    left:50%;
+    top:auto;
+    transform:translateX(-50%);
+    width:95%;
+    height:auto;
+    max-height:70vh;
+  }
+  .form .grid,
+  .backgrounds .grid{grid-template-columns:1fr;}
+  input,textarea,select{font-size:16px;}
+  body{padding-bottom:70px;}
+}
+
+/* ========================= */
+/* 📱 MOBILE BOTTOM TOOLBAR */
+@media (max-width:768px){
+  .mobile-toolbar{
+    position:fixed;
+    bottom:0;
+    left:0;
+    width:100%;
+    height:60px;
+    background: rgba(255,255,255,0.2);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-top:1px solid rgba(255,255,255,0.3);
+    box-shadow:0 -6px 20px rgba(0,0,0,0.3);
+    display:flex;
+    justify-content:space-around;
+    align-items:center;
+    z-index:9999;
+  }
+
+  .mobile-toolbar button{
+    background:none;
+    border:none;
+    color:cornflowerblue;
+    font-size:18px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:4px;
+    cursor:pointer;
+  }
+
+  .mobile-toolbar button span{
+    font-size:11px;
+    font-weight:bold;
+  }
+}
