@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>B-JAY Card Maker</title>
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="style.css">
+
+  <link rel="icon" href="bijaylogo.jpg" type="image">
+
+  <!-- Font Awesome -->
+ 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+ <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.css">
+<!-- Add inside <head> of your HTML -->
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Pacifico&display=swap" rel="stylesheet">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.js"></script>
+</head>
+
+<body>
+<div class="main">
+
+<!-- TOP -->
+<div class="top">
+<div class="upper">
+<h2>B-JAY</h2>
+<h1>CARD MAKER</h1>
+<div class="control">
+<button id="download"><i class="fa-solid fa-download"></i> Download</button>
+<button onclick="back()"><i class="fa-solid fa-arrow-left"></i> Back</button>
+</div>
+</div>
+
+<br><hr><br>
+
+<div class="upper">
+<ul>
+<li onclick="formopen()"><i class="fa-solid fa-file"></i> Form</li>
+<li onclick="textedit()"><i class="fa-solid fa-font"></i> Text Edit</li>
+<li onclick="imageedit()"><i class="fa-solid fa-image"></i> Image Edit</li>
+<li onclick="backgroundopen()"><i class="fa-solid fa-palette"></i> Background</li>
+</ul>
+
+<div class="control">
+<label for="stu" id="stul"><i class="fa-solid fa-user-graduate"></i> Student</label>
+<label for="sta" id="stal"><i class="fa-solid fa-user-tie"></i> Staff</label>
+<input type="radio" name="role" id="stu" checked>
+<input type="radio" name="role" id="sta">
+</div>
+</div>
+</div>
+
+<!-- MID -->
+<div class="mid">
+
+<div class="sidebar">
+
+<h3><i class="fa-solid fa-font"></i> Text Edit</h3>
+<hr>
+
+<ul>
+<li>School
+  <label class="switch">
+    <input type="checkbox" id="tSchool"><span class="slider"></span>
+  </label>
+</li>
+
+<li>Card Type
+  <label class="switch">
+    <input type="checkbox" id="tType"><span class="slider"></span>
+  </label>
+</li>
+
+<li>Full Name
+  <label class="switch">
+    <input type="checkbox" id="tName"><span class="slider"></span>
+  </label>
+</li>
+
+<li>Class / Position
+  <label class="switch">
+    <input type="checkbox" id="tClass"><span class="slider"></span>
+  </label>
+</li>
+
+<li>Wish
+  <label class="switch">
+    <input type="checkbox" id="tWish"><span class="slider"></span>
+  </label>
+</li>
+
+<li>Date
+  <label class="switch">
+    <input type="checkbox" id="tDate"><span class="slider"></span>
+  </label>
+</li>
+</ul>
+
+<hr>
+
+<h3><i class="fa-solid fa-sliders"></i> Options</h3>
+
+<div class="edit">
+
+<label>Background Color</label>
+<input type="color" id="optBg">
+
+<label>Text Color</label>
+<input type="color" id="optTxt">
+
+<label>Font Size</label>
+<input type="range" id="optFs" min="0" max="100" value="16">
+<label>Fonts</label>
+<select id="optfont"></select>
+<label>Padding</label>
+<input type="range" id="txtpad" value="10" name="">
+<label>Style</label>
+<div class="styleBtns">
+  <button id="btnBold"><b>B</b></button>
+  <button id="btnItalic"><i>I</i></button>
+  <button id="btnUnderline"><u>U</u></button>
+  <button id="btnAa">Aa</button>
+</div>
+
+<label>Border Color</label>
+<input type="color" id="optBc">
+
+<label>Border Size</label>
+<input type="range" id="optBw" min="1" max="8" value="2">
+
+<p>Border Radius</p>
+
+<label>All Radius</label>
+<input type="range" id="radAll" min="0" max="50" value="12">
+
+<div class="radiuscustom">
+  <label>Top Left</label>
+  <input type="range" id="radTL" min="0" max="50" value="12">
+
+  <label>Top Right</label>
+  <input type="range" id="radTR" min="0" max="50" value="12">
+
+  <label>Bottom Left</label>
+  <input type="range" id="radBL" min="0" max="50" value="12">
+
+  <label>Bottom Right</label>
+  <input type="range" id="radBR" min="0" max="50" value="12">
+</div>
+
+<p>Move</p>
+
+<label>Top - Bottom</label>
+<input type="range" id="moveY" min="0" max="90" value="0">
+
+<label>Left - Right</label>
+<input type="range" id="moveX" min="0" max="90" value="0">
+
+</div>
+</div>
+
+
+<!-- SIDEBARX -->
+<div class="sidebarX">
+  <h3><i class="fa-solid fa-image"></i> Image Edit</h3>
+  <hr>
+<ul>
+  <li>Logo
+  <label class="switch">
+    <input type="checkbox" id="ilogo"><span class="slider"></span>
+  </label>
+</li>
+
+<li>Image
+  <label class="switch">
+    <input type="checkbox" id="iimage"><span class="slider"></span>
+  </label>
+</li>
+
+</ul>
+  <h3><i class="fa-solid fa-sliders"></i> Options</h3>
+  <div class="edit">
+
+    <!-- SIZE -->
+    <label>Size</label>
+    <input type="range" id="imgSize" min="50" max="500" value="360">
+
+    <!-- BORDER -->
+    <label>Border Color</label>
+    <input type="color" id="imgBorderColor" value="#000000">
+
+    <label>Border Size</label>
+    <input type="range" id="imgBorderWidth" min="1" max="20" value="2">
+
+    <!-- BORDER RADIUS -->
+    <p>Border Radius</p>
+    <label>All Radius</label>
+    <input type="range" id="imgRadiusAll" min="0" max="100" value="12">
+
+    <div class="radiuscustom">
+      <label>Top Left</label>
+      <input type="range" id="imgRadiusTL" min="0" max="100" value="12">
+
+      <label>Top Right</label>
+      <input type="range" id="imgRadiusTR" min="0" max="100" value="12">
+
+      <label>Bottom Left</label>
+      <input type="range" id="imgRadiusBL" min="0" max="100" value="12">
+
+      <label>Bottom Right</label>
+      <input type="range" id="imgRadiusBR" min="0" max="100" value="12">
+    </div>
+
+    <!-- MOVE -->
+    <p>Move</p>
+    <label>Top - Bottom</label>
+    <input type="range" id="imgMoveY" min="0" max="90" value="0">
+
+    <label>Left - Right</label>
+    <input type="range" id="imgMoveX" min="0" max="90" value="0">
+
+  </div>
+</div>
+
+
+<!-- WORK -->
+<div class="workingarea">
+
+<div class="card" id="card">
+    <img src="" id="logoupd" height="100px">
+    <h3 id="school">ewjkrlke</h3>
+    <p id="type">Happy Birthday</p>
+    <img src="" id="imgupd" height="100px">
+    <p id="name">Blkds</p>
+    <p id="classw">d</p>
+    <p id="wish">d</p>
+    <p id="date">d</p>
+</div>
+
+<div class="backgrounds" id="backgroundPanel">
+    <h2><i class="fa-solid fa-palette"></i> Background</h2>
+    <hr>
+
+    <h3>Template</h3>
+    <ul class="grid">
+        <li data-bg="bg1.jpg"><img src="bg1.jpg">Template 1</li>
+        <li data-bg="bg2.jpg"><img src="bg2.jpg">Template 2</li>
+        <li data-bg="bg3.jpg"><img src="bg3.jpg">Template 3</li>
+        <li data-bg="bg4.jpg"><img src="bg4.jpg">Template 4</li>
+    </ul>
+
+    <h3>Choose Custom Background</h3><br>
+    <label for="upbgimage"><i class="fa-solid fa-image"></i> Upload Background</label>
+    <input type="file" id="upbgimage"><br><br>
+
+    <h3>Gradient Background</h3>
+    <div class="grid">
+        <label for="fcolor">First Colour</label>
+        <label for="scolor">Second Colour</label>
+        <input type="color" id="fcolor" value="#ffffff">
+        <input type="color" id="scolor" value="blue">
+    </div>
+    <input type="number" id="gradDirection" value="135" placeholder="Direction...">
+
+    <span onclick="closebackground()"><i class="fa-regular fa-circle-xmark"></i></span>
+</div>
+
+
+<div class="form">
+    <h2><i class="fa-solid fa-file"></i> Form</h2>
+    
+    <hr>
+    <h3>School</h3>
+    <div class="grid">
+        
+            <label for="uplogo"><i class="fa-solid fa-image"></i>  Upload Logo</label>
+        <input type="file" name="" id="uplogo">
+<input type="text" name="" placeholder="School Name..." oninput="sclname()" id="sclname">
+    </div>
+    <hr>
+    <h3>Birthday Person</h3>
+    <div class="grid">
+        <input type="text" placeholder="Mr./Mrs./Miss..." name="" id="mrs" list="mrr">
+        <datalist id="mrr">
+            <option value="Mr.">Mr.</option>
+            <option value="Miss.">Miss.</option>
+            <option value="Mrs.">Mrs.</option>
+        </datalist>
+        <input type="text" name="" placeholder="Full Name..." oninput="fullname()" id="fullname">
+        <input type="text" name="" placeholder="Class..." oninput="cls()" id="cls" list="classkolist">
+        <datalist id="classkolist">
+  <option value="Child Play">
+  <option value="Nursery">
+  <option value="LKG">
+  <option value="UKG">
+  <option value="Class 1">
+  <option value="Class 2">
+  <option value="Class 3">
+  <option value="Class 4">
+  <option value="Class 5">
+  <option value="Class 6">
+  <option value="Class 7">
+  <option value="Class 8">
+  <option value="Class 9">
+  <option value="Class 10">
+</datalist>
+        <input type="text" name="" placeholder="Position..." oninput="pos()" id="pos">
+       <select id="dob">
+           <option>DOB:-</option>
+           <option>Date:-</option>
+       </select>
+        <input type="text" name="" placeholder="Date..." oninput="datej()" id="datej">
+        <label for="upimage"><i class="fa-solid fa-image"></i>  Upload Image</label>
+        <input type="file" name="" id="upimage">
+    </div>
+    <hr>
+    <h3>Card Type</h3>
+    <select onchange="hbd()" id="hbd">
+        <option value="Happy Birthday">Birthday</option>
+        <option value="Congratulation">Congratulation</option>
+    </select><hr>
+    <h3>Wish</h3>
+    <div class="grid">
+<select onchange="wishx()" class="wish" id="wishx">
+    <option value="May this special day bring you happiness, good health, and success in your studies.
+Wishing you a bright future and a wonderful year ahead.">May this special day bring you happiness, good health, and success in your studies.
+Wishing you a bright future and a wonderful year ahead.</option>
+    <option value="We wish you good health, happiness, and continued success.
+Thank you for your dedication and valuable contribution to our school.
+May the coming year be filled with joy and achievement.">We wish you good health, happiness, and continued success.
+Thank you for your dedication and valuable contribution to our school.
+May the coming year be filled with joy and achievement.</option>
+<option value="The school family wishes you good health, happiness, and success in all your endeavors.
+May your day be filled with joy and your year with achievements.">
+    The school family wishes you good health, happiness, and success in all your endeavors.
+May your day be filled with joy and your year with achievements.
+</option>
+</select>
+
+<textarea placeholder="Wish..." oninput="wishy()" id="wishy"></textarea>
+    </div>
+    <span onclick="closeform()"><i class="fa-regular fa-circle-xmark"></i></span>
+
+</div>
+ <!-- cropper -->
+    <div id="cropperModal" style="display:none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);  background: rgba(255, 255, 255, 0.15);
+  
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid #fff; padding: 20px; z-index: 1000; border-radius: 10px; max-width: 80%; max-height: 80%;">
+   <div style="max-width: 300px; max-height: 300px; overflow: hidden; margin: 0 auto;">
+     <img id="cropImage" src="" style="max-width: 100%; display: block;">
+   </div>
+   <div style="text-align: center; margin-top: 15px;">
+     <button id="cropButton" style="padding: 10px 20px; margin-right: 10px; color: #000;">
+       <i class="fa-solid fa-crop"></i> 
+       Crop</button>
+     <button id="cancelCrop" style="padding: 10px 20px; color: red;">
+       <i class="fa-solid fa-circle-xmark"></i> 
+       Cancel</button>
+   </div>
+ </div>
+
+
+
+
+
+
+</div>
+
+</div>
+<footer style="color: #ddd; background:#333; text-align: center;">&copy; 2026 Bijay Khanal || bjayk99</footer>
+</div>
+<script src="script.js"></script>
+<script src="cropper.js"></script>
+<script src="textedit.js"></script>
+<script src="cardbg.js"></script>
+</body>
+</html>
