@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Marks Calculator</title>
+
+<style>
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:linear-gradient(135deg,#667eea,#764ba2);
+  font-family:'Segoe UI',Arial,sans-serif;
+}
+
+.card{
+  width:100%;
+  max-width:430px;
+  padding:30px;
+  border-radius:20px;
+  background:rgba(255,255,255,0.15);
+  backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);
+  box-shadow:0 25px 45px rgba(0,0,0,.3);
+  border:1px solid rgba(255,255,255,.25);
+  color:#fff;
+}
+
+h2{
+  text-align:center;
+  margin-bottom:15px;
+}
+
+.lang-btn{
+  text-align:center;
+  margin-bottom:15px;
+  display: flex;justify-content: space-between;
+}
+
+.lang-btn button{
+  background:rgba(255,255,255,.25);
+  border:none;
+  color:#fff;
+  padding:6px 14px;
+  border-radius:20px;
+  cursor:pointer;
+  margin:0 5px;
+  cursor: pointer;
+}
+
+input, select, button{
+  width:100%;
+  padding:12px;
+  margin:10px 0;
+  font-size:18px;
+  border-radius:10px;
+  border:2px solid #fff;
+  outline:none;
+  background: transparent;
+}
+
+select{
+  appearance:none;
+  cursor: pointer;
+}
+
+.btn-add{
+  background:linear-gradient(135deg,#43cea2,#185a9d);
+  color:#fff;
+  font-size:22px;
+  cursor: pointer;
+}
+
+.btn-clear{
+  background:linear-gradient(135deg,#ff416c,#ff4b2b);
+  color:#fff;
+  cursor: pointer;
+}
+
+#added{
+  text-align:center;
+  min-height:22px;
+}
+
+.result{
+  text-align:center;
+  margin-top:10px;
+}
+
+#conv{
+  font-size:42px;
+  color:#ffd369;
+}
+
+#contv{
+  font-size:30px;
+  color:#43cea2;
+}
+
+#num1{display:none}
+
+@media(max-width:480px){
+  .card{padding:20px}
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+<h2 id="title">Marks Calculator</h2>
+
+<div class="lang-btn">
+  <button onclick="setLang('en')">🌐 English</button>
+  <button onclick="setLang('np')">🌐 नेपाली</button>
+</div>
+
+<select id="conn"></select>
+
+<input type="number" id="num1" value="0" readonly>
+
+<p id="added"></p>
+
+<input type="number" id="num2" id="num2">
+
+<button id="add" class="btn-add"></button>
+<button id="clear" class="btn-clear"></button>
+
+<div class="result">
+  <span id="totalLabel"></span>
+  <span id="conv">0</span>
+</div>
+
+<div class="result">
+  <span id="convertedLabel"></span>
+  <span id="contv">0</span>
+</div>
+<h4>B-JAY</h4>
+
+</div>
+
+<script>
+/* ===== LANGUAGE DATA ===== */
+const langData = {
+  en:{
+    title:"Marks Calculator",
+    add:"➕ Add",
+    clear:"🗑️ Clear",
+    input:"Enter marks",
+    added:"Added marks appear here",
+    total:"Total Marks : ",
+    converted:"Converted Marks : ",
+    options:`
+      <optgroup label="First Terminal">
+        <option value="0.4">Childplay to 3</option>
+        <option value="0.2">Class 4–8 / Computer</option>
+      </optgroup>
+      <optgroup label="Second Terminal">
+        <option value="0.4">Childplay to 3</option>
+        <option value="0.2">Class 4–8 / Computer</option>
+      </optgroup>
+      <optgroup label="Third Terminal">
+        <option value="0.6">Childplay to 3</option>
+        <option value="0.3">Class 4–8 / Computer</option>
+      </optgroup>
+      <optgroup label="Annual">
+        <option value="0.8">Childplay to 3</option>
+        <option value="0.4">Class 4–8 / Computer</option>
+      </optgroup>`
+  },
+  np:{
+    title:"अंक गणना प्रणाली",
+    add:"➕ थप्नुहोस्",
+    clear:"🗑️ खाली गर्नुहोस्",
+    input:"अंक प्रविष्ट गर्नुहोस्",
+    added:"थपिएको अंक यहाँ देखिन्छ",
+    total:"जम्मा अंक : ",
+    converted:"रूपान्तरित अंक : ",
+    options:`
+      <optgroup label="पहिलो त्रैमासिक">
+        <option value="0.4">चाइल्डप्ले – कक्षा ३</option>
+        <option value="0.2">कक्षा ४–८ / कम्प्युटर</option>
+      </optgroup>
+      <optgroup label="दोस्रो त्रैमासिक">
+        <option value="0.4">चाइल्डप्ले – कक्षा ३</option>
+        <option value="0.2">कक्षा ४–८ / कम्प्युटर</option>
+      </optgroup>
+      <optgroup label="तेस्रो त्रैमासिक">
+        <option value="0.6">चाइल्डप्ले – कक्षा ३</option>
+        <option value="0.3">कक्षा ४–८ / कम्प्युटर</option>
+      </optgroup>
+      <optgroup label="वार्षिक">
+        <option value="0.8">चाइल्डप्ले – कक्षा ३</option>
+        <option value="0.4">कक्षा ४–८ / कम्प्युटर</option>
+      </optgroup>`
+  }
+};
+
+/* ===== ELEMENTS ===== */
+const conn = document.getElementById("conn");
+const num1 = document.getElementById("num1");
+const num2 = document.getElementById("num2");
+const addBtn = document.getElementById("add");
+const clearBtn = document.getElementById("clear");
+const conv = document.getElementById("conv");
+const contv = document.getElementById("contv");
+const added = document.getElementById("added");
+
+/* ===== ANIMATION ===== */
+function animate(el,start,end){
+  let t0=null;
+  function step(t){
+    if(!t0) t0=t;
+    let p=Math.min((t-t0)/400,1);
+    el.textContent=(start+(end-start)*p).toFixed(2).replace(/\.00$/,"");
+    if(p<1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+
+/* ===== LOGIC ===== */
+let history=[];
+
+addBtn.onclick=()=>{
+  let total=(+num1.value||0)+(+num2.value||0);
+  if(total>50) return reset();
+  history.push(num2.value);
+  num1.value=total;
+  num2.value="";
+  animate(conv,+conv.textContent,total);
+  animate(contv,+contv.textContent,total*conn.value);
+  added.textContent=history.join(" + ")+" =";
+};
+
+conn.onchange=()=>{
+  animate(contv,+contv.textContent,(+num1.value||0)*conn.value);
+};
+
+clearBtn.onclick=reset;
+
+function reset(){
+  num1.value=0;
+  num2.value="";
+  history=[];
+  added.textContent="";
+  animate(conv,+conv.textContent,0);
+  animate(contv,+contv.textContent,0);
+}
+
+/* ===== LANGUAGE SWITCH ===== */
+function setLang(l){
+  const d=langData[l];
+  title.textContent=d.title;
+  addBtn.textContent=d.add;
+  clearBtn.textContent=d.clear;
+  num2.placeholder=d.input;
+  added.textContent=d.added;
+  totalLabel.textContent=d.total;
+  convertedLabel.textContent=d.converted;
+  conn.innerHTML=d.options;
+}
+
+setLang("en");
+</script>
+
+</body>
+</html>
